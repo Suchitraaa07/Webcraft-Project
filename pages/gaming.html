@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gaming Events 2025</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(to bottom, #140025, #2a004b);
+    overflow-x: hidden;
+    color: #eee;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    background: #1a002b;
+    color: #c77dff;
+    padding: 30px 20px;
+    text-shadow: 0 0 5px #c77dff, 0 0 10px #9d4edd;
+    border-bottom: 4px solid #9d4edd;
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 25px auto;
+    flex-wrap: wrap;
+  }
+
+  select, input[type="date"] {
+    background: #1c0033;
+    color: #c77dff;
+    border: 2px solid #c77dff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+
+  select:focus, input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #d09cff, 0 0 10px #c77dff;
+  }
+
+  /* The road background */
+  .road {
+    position: relative;
+    background: linear-gradient(to right, #240046 0%, #2d0053 50%, #240046 100%);
+    height: 500px;
+    border-top: 10px solid #19002e;
+    border-bottom: 10px solid #19002e;
+    overflow: hidden;
+  }
+
+  .road::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 80px,
+      #bb86fc 80px,
+      #bb86fc 100px
+    );
+    opacity: 0.4;
+    animation: moveRoad 4s linear infinite;
+  }
+
+  @keyframes moveRoad {
+    from { background-position-x: 0; }
+    to { background-position-x: 200px; }
+  }
+
+  /* Cards on road */
+  .card {
+    position: absolute;
+    width: 190px;
+    background: #2a004b;
+    border: 2px solid #bb86fc;
+    color: #e8d1ff;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #c77dff, 0 0 20px #9d4edd;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .card:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 0 0 15px #e0aaff, 0 0 25px #c77dff;
+  }
+
+  .card img {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border: 2px solid #bb86fc;
+  }
+
+  .card h3 {
+    font-size: 0.6rem;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    color: #d09cff;
+  }
+
+  .card p {
+    font-size: 0.55rem;
+    margin: 2px 0;
+    color: #eee;
+  }
+
+  footer {
+    text-align: center;
+    background: #1a002b;
+    color: #c77dff;
+    padding: 20px;
+    font-size: 0.6rem;
+    border-top: 4px solid #9d4edd;
+  }
+
+  @media (max-width: 600px) {
+    .road { height: 400px; }
+    .card { width: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎮 Gaming Events 2025 🎮</h1>
+  <p>Power up your calendar and join the battle!</p>
+</header>
+
+<section class="filters">
+  <select id="modeFilter">
+    <option value="all">All Modes</option>
+    <option value="Online">Online</option>
+    <option value="Offline">Offline</option>
+  </select>
+  <input type="date" id="dateFilter" />
+</section>
+
+<section class="road" id="roadContainer"></section>
+
+<footer>© 2025 Gaming League | Level Up, Always!</footer>
+
+<script>
+  const events = [
+    {
+      title: "Valorant Clash 2025",
+      date: "2025-11-18",
+      place: "Mumbai, India",
+      mode: "Offline",
+      img: "https://th.bing.com/th/id/OIP.qcLuziP4RgDHSBdSRXhH_gHaEK?w=295&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+    },
+    {
+      title: "Fortnite Frenzy",
+      date: "2025-11-20",
+      place: "Online",
+      mode: "Online",
+      img: "https://th.bing.com/th/id/OIP.VOZrMb9IWvnmDU3VblVZVgHaFj?w=224&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+    },
+    {
+      title: "Minecraft Builders Cup",
+      date: "2025-12-02",
+      place: "Pune, India",
+      mode: "Offline",
+      img: "https://th.bing.com/th/id/OIP.-HHU8Mc6cpIFRf31Z9gSnQHaEK?w=307&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+    },
+    {
+      title: "Rocket League Challenge",
+      date: "2025-12-10",
+      place: "Online",
+      mode: "Online",
+      img: "https://th.bing.com/th/id/OIP.LzwG5kRINg-2RdUJZKGOVwHaEK?w=301&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+    },
+    {
+      title: "PUBG Mobile Grand Cup",
+      date: "2025-12-15",
+      place: "Delhi, India",
+      mode: "Offline",
+      img: "https://th.bing.com/th/id/OIP.Oj8oGCQ8aSx1OydnYTvZRgHaEK?w=320&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+    },
+    {
+      title: "eFootball 2025 Qualifiers",
+      date: "2025-12-22",
+      place: "Online",
+      mode: "Online",
+      img: "https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?auto=format&fit=crop&w=900&q=60"
+    }
+  ];
+
+  const road = document.getElementById("roadContainer");
+  const modeFilter = document.getElementById("modeFilter");
+  const dateFilter = document.getElementById("dateFilter");
+
+  function randomizePositions(cards) {
+    cards.forEach((card, index) => {
+      const top = 50 + Math.random() * 300;
+      const left = 60 + index * 250 + (Math.random() * 80 - 40);
+      card.style.top = `${top}px`;
+      card.style.left = `${left}px`;
+    });
+  }
+
+  function displayEvents(list) {
+    road.innerHTML = '';
+    const cards = [];
+
+    if (list.length === 0) {
+      road.innerHTML = `<p style="position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);color:#c77dff;">No gaming events found!</p>`;
+      return;
+    }
+
+    list.forEach(e => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${e.img}" alt="${e.title}" />
+        <h3>${e.title}</h3>
+        <p>📅 ${new Date(e.date).toDateString()}</p>
+        <p>📍 ${e.place}</p>
+        <p>🕹️ ${e.mode}</p>
+      `;
+      road.appendChild(card);
+      cards.push(card);
+    });
+
+    randomizePositions(cards);
+  }
+
+  function filterEvents() {
+    const mode = modeFilter.value;
+    const date = dateFilter.value;
+    let filtered = [...events];
+
+    if (mode !== "all") filtered = filtered.filter(ev => ev.mode === mode);
+    if (date) filtered = filtered.filter(ev => ev.date === date);
+
+    displayEvents(filtered);
+  }
+
+  modeFilter.addEventListener("change", filterEvents);
+  dateFilter.addEventListener("change", filterEvents);
+
+  displayEvents(events);
+</script>
+
+</body>
+</html>
