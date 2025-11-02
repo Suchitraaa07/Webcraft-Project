@@ -261,14 +261,14 @@ function displayEvents(filteredEvents) {
   container.innerHTML = ''; 
 
   if (filteredEvents.length === 0) {
-    container.innerHTML = <p class="no-results">No events found matching your criteria.</p>;
+   container.innerHTML = `<p class="no-results">No events found matching your criteria.</p>`;
     return;
   }
 
   filteredEvents.forEach((e, index) => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.animationDelay = ${index * 0.1}s;
+    card.style.animationDelay = `${index * 0.1}s`;
     
     card.innerHTML = `
       <img src="${e.image}" alt="${e.title}" class="card-image">
