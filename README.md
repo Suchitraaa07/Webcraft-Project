@@ -9,8 +9,4 @@
 
 # Workshops – Hands-on learning sessions on trending technologies.
 
-# Interactive schedule with day-wise tabs.
-
 # Registration form with pop-up success modal.
-
-# Responsive dark/light themed design using Tailwind CSS.
