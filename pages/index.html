@@ -3,147 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EventVerse - Home</title>
+  <title>EventVerse 2025</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
-  <div id="navbar-placeholder"></div>
-
-  <main>
-    <section class="h-screen flex items-center justify-center text-white animated-gradient">
-      <div class="text-center">
-        <span class="text-purple-300 font-semibold block animate-fade-in-up anim-delay-1">Innovation • Creativity • Excellence</span>
-        <h1 class="text-5xl md:text-7xl font-bold mt-4 mb-6 animate-fade-in-up anim-delay-2">EventVerse 2025</h1>
-        <p class="text-lg text-gray-200 mb-8 animate-fade-in-up anim-delay-3">Join us for the ultimate celebration of technology, culture, and workshops.</p>
-        <div class="animate-fade-in-up anim-delay-4">
-          <a href="#schedule" class="bg-purple-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 hover:scale-105 transform transition duration-300 mr-4">View Schedule</a>
-          <a href="events.html" class="bg-gray-700 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-600 hover:scale-105 transform transition duration-300">Explore Events</a>
-        </div>
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-gray-900 bg-opacity-90 text-white shadow-lg">
+    <div class="container mx-auto flex items-center justify-between py-4 px-6">
+      <a href="index.html" class="text-2xl font-bold text-blue-400">EVENTVERSE <span class="text-yellow-400">2025</span></a>
+      <div class="hidden md:flex space-x-8 text-lg">
+        <a href="techevents.html" class="hover:text-blue-400 transition">Tech Events</a>
+        <a href="culturalevent.html" class="hover:text-blue-400 transition">Cultural</a>
+        <a href="gaming.html" class="hover:text-blue-400 transition">Gaming</a>
+        <a href="workshops.html" class="hover:text-blue-400 transition">Workshop</a>
       </div>
-    </section>
-    
-    <section id="about-section" class="container mx-auto px-6 py-20 text-center opacity-0 transition-all duration-1000 ease-in-out">
-      <h2 class="text-4xl font-bold mb-6">About The Fest</h2>
-      <p class="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-        EventVerse is the annual technical and cultural festival of GCOE Nagpur, designed to be the central hub for all fest-related information. Our goal is to maximize participant engagement and reduce organizational friction by providing a dynamic, responsive, and modern user experience.
-      </p>
-    </section>
+      <a href="#register" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg transition">Register</a>
+    </div>
+  </nav>
 
-    <section id="schedule" class="bg-white dark:bg-gray-800 py-20">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-10">Event Schedule</h2>
+  <!-- Hero Section -->
+  <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative" 
+    style="background-image: url('https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1500&q=80');">
+    <div class="absolute inset-0 bg-black opacity-70"></div>
 
-        <div class="flex justify-center border-b border-gray-300 dark:border-gray-700 mb-8">
-          <button class="tab-btn active" data-day="day1">Day 1 (March 15)</button>
-          <button class="tab-btn" data-day="day2">Day 2 (March 16)</button>
-          <button class="tab-btn" data-day="day3">Day 3 (March 17)</button>
-        </div>
-
-        <div class="p-6 rounded-lg shadow-lg bg-gray-100 dark:bg-gray-900">
-          
-          <div id="day1" class="tab-content active space-y-4">
-            <div class="p-4 border-b dark:border-gray-700">
-              <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">10:00 AM - CodeSprint</h3>
-              <p class="text-gray-700 dark:text-gray-300">Technical • Main Auditorium</p>
-            </div>
-            <div class="p-4 border-b dark:border-gray-700">
-              <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">2:00 PM - Robotics Challenge</h3>
-              <p class="text-gray-700 dark:text-gray-300">Technical • Workshop Hall</p>
-            </div>
-            <div class="p-4">
-              <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">6:00 PM - Dance Battle Royale</h3>
-              <p class="text-gray-700 dark:text-gray-300">Cultural • Open Air Stage</p>
-            </div>
-          </div>
-          
-          <div id="day2" class="tab-content space-y-4">
-            <div class="p-4 border-b dark:border-gray-700">
-              <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">9:00 AM - Web Dev Bootcamp</h3>
-              <p class="text-gray-700 dark:text-gray-300">Workshop • CS Lab 1</p>
-            </div>
-            </div>
-          
-          <div id="day3" class="tab-content space-y-4">
-            <div class="p-4 border-b dark:border-gray-700">
-              <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">10:00 AM - CS:GO Championship</h3>
-              <p class="text-gray-700 dark:text-gray-300">Gaming • E-Sports Arena</p>
-            </div>
-            </div>
-          
-        </div>
+    <div class="relative text-center text-white px-6">
+      <h1 class="text-5xl md:text-7xl font-bold mb-4">EVENTVERSE 2025</h1>
+      <p class="text-xl mb-8">Where Innovation Meets Celebration</p>
+      <div class="space-x-4">
+        <a href="#schedule" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold transition">View Schedule</a>
+        <a href="#register" class="border-2 border-yellow-400 hover:bg-yellow-400 hover:text-black px-6 py-3 rounded-lg text-lg font-semibold transition">Register Now</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact" class="container mx-auto px-6 py-20">
-      <h2 class="text-4xl font-bold text-center mb-10">Contact & Registration</h2>
+  <!-- Schedule Section -->
+  <section id="schedule" class="bg-white dark:bg-gray-800 py-20">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-10">Event Schedule</h2>
 
-      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-12">
-        
-        <div>
-          <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-4">Have questions? Reach out to our organizing committee.</p>
-          
-          <div class="space-y-4">
-            <p><strong>Address:</strong> GCOE, Nagpur, Maharashtra, 440001</p>
-            <p><strong>Email:</strong> info@gcoenagpur.ac.in</p>
-            <p><strong>Phone:</strong> +91 987 654 3210</p>
+      <div class="flex justify-center border-b border-gray-300 dark:border-gray-700 mb-8">
+        <button class="tab-btn active" data-day="day1">Day 1 (March 15)</button>
+        <button class="tab-btn" data-day="day2">Day 2 (March 16)</button>
+        <button class="tab-btn" data-day="day3">Day 3 (March 17)</button>
+      </div>
+
+      <div class="p-6 rounded-lg shadow-lg bg-gray-100 dark:bg-gray-900">
+        <div id="day1" class="tab-content active space-y-4">
+          <div class="p-4 border-b dark:border-gray-700">
+            <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">10:00 AM - CodeSprint</h3>
+            <p class="text-gray-700 dark:text-gray-300">Technical • Main Auditorium</p>
           </div>
-          
-          <div class="mt-8 rounded-lg overflow-hidden">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.43202685838!2d79.053186315332!3d21.13524839077977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0e53a610449%3A0x9597cfa631cc710e!2sGovernment%20College%20of%20Engineering%2C%20Nagpur!5e0!3m2!1sen!2sin!4f1716383636731!5m2!1sen!2sin" 
-              width="100%" 
-              height="300" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+          <div class="p-4 border-b dark:border-gray-700">
+            <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">2:00 PM - Robotics Challenge</h3>
+            <p class="text-gray-700 dark:text-gray-300">Technical • Workshop Hall</p>
+          </div>
+          <div class="p-4">
+            <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">6:00 PM - Dance Battle Royale</h3>
+            <p class="text-gray-700 dark:text-gray-300">Cultural • Open Air Stage</p>
           </div>
         </div>
-        
-        <div id="form-wrapper">
-          <h3 class="text-2xl font-bold mb-4">Register for EventVerse</h3>
-          <form id="registration-form" class="space-y-4" novalidate>
-            <div>
-              <label for="name" class="block font-medium mb-1">Full Name *</label>
-              <input type="text" id="name" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 border-transparent focus:border-purple-500 focus:outline-none" required>
-              <p id="name-error" class="text-red-500 text-sm mt-1"></p>
-            </div>
-            
-            <div>
-              <label for="email" class="block font-medium mb-1">Email Address *</label>
-              <input type="email" id="email" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 border-transparent focus:border-purple-500 focus:outline-none" required>
-              <p id="email-error" class="text-red-500 text-sm mt-1"></p>
-            </div>
-            
-            <div>
-              <label for="phone" class="block font-medium mb-1">Phone Number *</label>
-              <input type="tel" id="phone" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 border-transparent focus:border-purple-500 focus:outline-none" required>
-              <p id="phone-error" class="text-red-500 text-sm mt-1"></p>
-            </div>
-            
-            <button type="submit" class="w-full bg-purple-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 transition duration-300">
-              Submit Registration
-            </button>
-          </form>
+
+        <div id="day2" class="tab-content space-y-4">
+          <div class="p-4 border-b dark:border-gray-700">
+            <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">9:00 AM - Web Dev Bootcamp</h3>
+            <p class="text-gray-700 dark:text-gray-300">Workshop • CS Lab 1</p>
+          </div>
         </div>
-        
+
+        <div id="day3" class="tab-content space-y-4">
+          <div class="p-4 border-b dark:border-gray-700">
+            <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">10:00 AM - CS:GO Championship</h3>
+            <p class="text-gray-700 dark:text-gray-300">Gaming • E-Sports Arena</p>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+  <!-- Contact & Registration -->
+  <section id="contact" class="container mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-10">Contact & Registration</h2>
 
-  <div id="footer-placeholder"></div>
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
+        <p class="text-gray-700 dark:text-gray-300 mb-4">Have questions? Reach out to our organizing committee.</p>
+        <div class="space-y-4">
+          <p><strong>Address:</strong> GCOE, Nagpur, Maharashtra, 440001</p>
+          <p><strong>Email:</strong> info@gcoenagpur.ac.in</p>
+          <p><strong>Phone:</strong> +91 987 654 3210</p>
+        </div>
+        <div class="mt-8 rounded-lg overflow-hidden">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.43202685838!2d79.053186315332!3d21.13524839077977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0e53a610449%3A0x9597cfa631cc710e!2sGovernment%20College%20of%20Engineering%2C%20Nagpur!5e0!3m2!1sen!2sin!4f1716383636731!5m2!1sen!2sin" 
+            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <div id="register">
+        <h3 class="text-2xl font-bold mb-4">Register for EventVerse</h3>
+        <form id="registration-form" class="space-y-4" novalidate>
+          <div>
+            <label for="name" class="block font-medium mb-1">Full Name *</label>
+            <input type="text" id="name" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
+            <p id="name-error" class="text-red-500 text-sm mt-1"></p>
+          </div>
+
+          <div>
+            <label for="email" class="block font-medium mb-1">Email Address *</label>
+            <input type="email" id="email" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
+            <p id="email-error" class="text-red-500 text-sm mt-1"></p>
+          </div>
+
+          <div>
+            <label for="phone" class="block font-medium mb-1">Phone Number *</label>
+            <input type="tel" id="phone" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
+            <p id="phone-error" class="text-red-500 text-sm mt-1"></p>
+          </div>
+
+          <button type="submit" class="w-full bg-purple-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 transition">
+            Submit Registration
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <script src="js/main.js"></script>
 </body>
 </html>
 
-  <div id="footer-placeholder"></div>
-
-  <script src="js/main.js"></script>
-</body>
-</html>
