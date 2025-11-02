@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultural Events | 2025</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- 1. GLOBAL & ANIMATIONS --- */
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a004a 0%, #b8004a 30%, #ff6f00 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- 2. HEADER --- */
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-out;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ffd700;
+      text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+    }
+
+    header p {
+      font-size: 1.15rem;
+      color: #ffddbb;
+      margin-top: 10px;
+    }
+
+    /* --- 3. FILTERS --- */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 30px auto;
+      max-width: 800px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 111, 0, 0.3);
+    }
+
+    select, input[type="date"] {
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      border: 1px solid #ff6f00;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      outline: none;
+    }
+
+    select:hover, input[type="date"]:hover,
+    select:focus, input[type="date"]:focus {
+      border-color: #ffd700;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    /* --- 4. EVENT CARDS --- */
+    .events {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 40px 10%;
+    }
+
+    .card {
+      background: #fffaf5; /* Cream background for high contrast */
+      color: #4a2500; /* Dark brown text for high contrast */
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      color: #b8004a;
+      margin-bottom: 12px; /* Added more space */
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .card p {
+      color: #5c3000;
+      font-size: 1rem; /* UPDATED: Increased font size */
+      line-height: 1.6;
+      margin-bottom: 5px; /* Added spacing */
+    }
+    
+    .card p strong {
+      font-weight: 700; /* UPDATED: Made labels bolder */
+      color: #4a2500; /* Darker for more pop */
+      margin-right: 5px; /* Added spacing */
+    }
+
+    /* Used by JS to show no results */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #ffddbb;
+      font-size: 1.1rem;
+      padding: 40px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+    }
+
+    /* --- 5. FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #ffddbb;
+      font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255, 111, 0, 0.3);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Cultural Events 2025</h1>
+  <p>Celebrate art, music, traditions, and creativity across the world</p>
+</header>
+
+<section class="filters">
+  <select id="modeFilter">
+    <option value="all">All Modes</option>
+    <option value="Online">Online</option>
+    <option value="Offline">Offline</option>
+  </select>
+  <input type="date" id="dateFilter">
+</section>
+
+<section class="events" id="eventsContainer">
+  </section>
+
+<footer>
+  © 2025 CulturalEvents. Embrace the Spirit of Art & Heritage.
+</footer>
+
+<script>
+// --- 1. STATE (Our Data) ---
+const events = [
+  { 
+    title: "Global Music Fest", 
+    date: "2025-11-15", 
+    place: "On Campus", 
+    mode: "Offline",
+    image: "https://picsum.photos/seed/music/400/300"
+  },
+  { 
+    title: "Virtual Art Gala", 
+    date: "2025-12-02", 
+    place: "Online", 
+    mode: "Online",
+    image: "https://picsum.photos/seed/art/400/300"
+  },
+  { 
+    title: "Heritage Dance Night", 
+    date: "2025-11-28", 
+    place: "On Campus", 
+    mode: "Offline",
+    image: "https://picsum.photos/seed/dance/400/300"
+  },
+  { 
+    title: "World Folk Tales Live", 
+    date: "2025-12-07", 
+    place: "Online", 
+    mode: "Online",
+    image: "httpss://picsum.photos/seed/folk/400/300"
+  },
+  { 
+    title: "Cultural Harmony Fest", 
+    date: "2025-12-20", 
+    place: "On Campus",
+    mode: "Offline",
+    image: "https://picsum.photos/seed/harmony/400/300"
+  },
+  { 
+    title: "Global Theatre Carnival", 
+    date: "2025-11-25", 
+    place: "Online", 
+    mode: "Online",
+    image: "https://picsum.photos/seed/theatre/400/300"
+  }
+];
+
+// --- 2. DOM ELEMENTS ---
+const container = document.getElementById('eventsContainer');
+const modeFilter = document.getElementById('modeFilter');
+const dateFilter = document.getElementById('dateFilter');
+
+// --- 3. FUNCTIONS ---
+
+/**
+ * Renders the provided list of events into the DOM.
+ * @param {Array} filteredEvents - The array of event objects to display.
+ */
+function displayEvents(filteredEvents) {
+  container.innerHTML = ''; 
+
+  if (filteredEvents.length === 0) {
+    container.innerHTML = <p class="no-results">No events found matching your criteria.</p>;
+    return;
+  }
+
+  filteredEvents.forEach((e, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = ${index * 0.1}s;
+    
+    // UPDATED: Added strong tags for better visibility
+    card.innerHTML = `
+      <img src="${e.image}" alt="${e.title}" class="card-image">
+      <div class="card-content">
+        <h3>${e.title}</h3>
+        <p><strong>Date:</strong> ${new Date(e.date).toDateString()}</p>
+        <p><strong>Place:</strong> ${e.place}</p>
+        <p><strong>Mode:</strong> ${e.mode}</p>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+/**
+ * Checks the filters and updates the event list.
+ */
+function filterEvents() {
+  const mode = modeFilter.value;
+  const date = dateFilter.value;
+  let filtered = events;
+
+  if (mode !== "all") {
+    filtered = filtered.filter(e => e.mode === mode);
+  }
+
+  if (date) {
+    filtered = filtered.filter(e => e.date === date);
+  }
+
+  displayEvents(filtered);
+}
+
+// --- 4. EVENT LISTENERS & INITIAL LOAD ---
+modeFilter.addEventListener('change', filterEvents);
+dateFilter.addEventListener('change', filterEvents);
+
+displayEvents(events);
+
+</script>
+
+</body>
+</html>
