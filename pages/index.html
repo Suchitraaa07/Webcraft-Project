@@ -5,15 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EventVerse 2025</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css"> 
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
-  <section id="about">
-    ...
-  </section>
-
-  <!-- Navbar -->
   <nav class="fixed top-0 left-0 w-full z-50 bg-gray-900 bg-opacity-90 text-white shadow-lg">
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
       <a href="index.html" class="text-2xl font-bold text-blue-400">EVENTVERSE <span class="text-yellow-400">2025</span></a>
@@ -27,22 +22,19 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative" 
     style="background-image: url('https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1500&q=80');">
     <div class="absolute inset-0 bg-black opacity-70"></div>
-
     <div class="relative text-center text-white px-6">
       <h1 class="text-5xl md:text-7xl font-bold mb-4">EVENTVERSE 2025</h1>
       <p class="text-xl mb-8">Where Innovation Meets Celebration</p>
       <div class="space-x-4">
         <a href="#schedule" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold transition">View Schedule</a>
-        <a href="#register" class="border-2 border-yellow-400 hover:bg-yellow-400 hover:text-black px-6 py-3 rounded-lg text-lg font-semibold transition">Register Now</a>
+        <a href="#register" class="border-2 border-yellow-400 hover:bg-yellow-400 hover:text-black px-6 py-3 rounded-lg text-lg font-semibold transition">Contact</a>
       </div>
     </div>
   </section>
 
-  <!-- Schedule Section -->
   <section id="schedule" class="bg-white dark:bg-gray-800 py-20">
     <div class="container mx-auto px-6">
       <h2 class="text-4xl font-bold text-center mb-10">Event Schedule</h2>
@@ -86,7 +78,6 @@
     </div>
   </section>
 
-  <!-- Contact & Registration -->
   <section id="contact" class="container mx-auto px-6 py-20">
     <h2 class="text-4xl font-bold text-center mb-10">Contact & Registration</h2>
 
@@ -113,21 +104,18 @@
           <div>
             <label for="name" class="block font-medium mb-1">Full Name *</label>
             <input type="text" id="name" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
-            <p id="name-error" class="text-red-500 text-sm mt-1"></p>
+            <p id="name-error" class="text-red-500 text-sm mt-1 h-4"></p>
           </div>
-
           <div>
             <label for="email" class="block font-medium mb-1">Email Address *</label>
             <input type="email" id="email" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
-            <p id="email-error" class="text-red-500 text-sm mt-1"></p>
+            <p id="email-error" class="text-red-500 text-sm mt-1 h-4"></p>
           </div>
-
           <div>
             <label for="phone" class="block font-medium mb-1">Phone Number *</label>
             <input type="tel" id="phone" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
-            <p id="phone-error" class="text-red-500 text-sm mt-1"></p>
+            <p id="phone-error" class="text-red-500 text-sm mt-1 h-4"></p>
           </div>
-
           <button type="submit" class="w-full bg-purple-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 transition">
             Submit Registration
           </button>
@@ -136,7 +124,21 @@
     </div>
   </section>
 
+  <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+    <p>© 2025 EventVerse. All rights reserved.</p>
+  </footer>
+
+  <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50" style="display: none;">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-xl text-center max-w-sm">
+      <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <h2 class="text-2xl font-bold text-white mb-3">Registration Successful!</h2>
+      <p class="text-gray-300 mb-6">Thank you! Your spot is reserved.</p>
+      <button id="close-modal-btn" class="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition duration-300">
+        Close
+      </button>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
 </body>
 </html>
-

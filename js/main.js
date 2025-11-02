@@ -45,6 +45,61 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+    // --- 1. SCHEDULE TAB LOGIC (DUPLICATE SAFE) ---
+    // Already present above, so not repeated.
+
+    // --- 2. FORM VALIDATION & POP-UP LOGIC ---
+    const successModal = document.getElementById("success-modal");
+    const closeModalBtn = document.getElementById("close-modal-btn");
+
+    // Input fields
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+
+    // Error message fields
+    const nameError = document.getElementById("name-error");
+    const emailError = document.getElementById("email-error");
+    const phoneError = document.getElementById("phone-error");
+
+    if (form) {
+      form.addEventListener("submit", function(event) {
+        event.preventDefault(); 
+        let isValid = true;
+        nameError.textContent = "";
+        emailError.textContent = "";
+        phoneError.textContent = "";
+        // Validate Name
+        if (nameInput.value.trim() === "") {
+          nameError.textContent = "Full Name is required.";
+          isValid = false;
+        }
+        // Validate Email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+        if (!emailRegex.test(emailInput.value)) {
+          emailError.textContent = "Please enter a valid email address.";
+          isValid = false;
+        }
+        // Validate Phone
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(phoneInput.value)) {
+          phoneError.textContent = "Please enter a valid 10-digit phone number.";
+          isValid = false;
+        }
+        // If all inputs are valid, show the pop-up
+        if (isValid && successModal) {
+          successModal.style.display = "flex";
+        }
+      });
+    }
+
+    // --- 3. MODAL CLOSE LOGIC ---
+    if (closeModalBtn && successModal) {
+      closeModalBtn.addEventListener("click", function() {
+        successModal.style.display = "none";
+      });
+    }
+
   // --- 5. Form Validation Logic (MOVED FROM contact.js) ---
   const form = document.getElementById("registration-form");
   if (form) { // Check if form exists on this page
@@ -104,4 +159,4 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }
-});
+  });
