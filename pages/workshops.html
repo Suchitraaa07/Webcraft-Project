@@ -22,12 +22,20 @@
 
   header {
     text-align: center;
-    padding: 50px 20px 20px;
+    padding: 30px 20px 20px;
     border-bottom: 2px dashed #999;
     background-color: #fffaf0;
     position: sticky;
     top: 0;
     z-index: 10;
+  }
+
+  header img {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   }
 
   header h1 {
@@ -76,7 +84,7 @@
     padding: 18px;
     box-shadow: 4px 4px 0 #e6c87f;
     position: relative;
-    overflow: visible; /* allow pencil to overflow */
+    overflow: visible;
     transition: transform 0.18s;
   }
 
@@ -88,7 +96,7 @@
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 10px;
-    background: linear-gradient(135deg,#efe7d1,#fff); /* fallback */
+    background: linear-gradient(135deg,#efe7d1,#fff);
   }
 
   .card img.photo {
@@ -98,7 +106,6 @@
     display: block;
   }
 
-  /* Inline SVG pencil wrapper */
   .pencil {
     position: absolute;
     top: -18px;
@@ -107,29 +114,14 @@
     height: 54px;
     transform: rotate(20deg);
     z-index: 5;
-    pointer-events: none; /* so clicks go through */
+    pointer-events: none;
     filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.15));
   }
 
-  /* give the pencil a subtle paper-pin look */
-  .pencil .eraser {
-    fill: #f3a57a;
-    stroke: #b86b3e;
-    stroke-width: 0.5;
-  }
-  .pencil .metal {
-    fill: #c7c7c7;
-    stroke: #8f8f8f;
-    stroke-width: 0.35;
-  }
-  .pencil .body {
-    fill: #f6e27c;
-    stroke: #cbbf3b;
-    stroke-width: 0.45;
-  }
-  .pencil .lead {
-    fill: #3a3a3a;
-  }
+  .pencil .eraser { fill: #f3a57a; stroke: #b86b3e; stroke-width: 0.5; }
+  .pencil .metal { fill: #c7c7c7; stroke: #8f8f8f; stroke-width: 0.35; }
+  .pencil .body { fill: #f6e27c; stroke: #cbbf3b; stroke-width: 0.45; }
+  .pencil .lead { fill: #3a3a3a; }
 
   .card h3 { font-size: 1.35rem; color: #444; margin-bottom: 6px; }
   .card p { color: #555; line-height: 1.5; font-size: 1rem; margin: 4px 0; }
@@ -153,6 +145,7 @@
 <body>
 
 <header>
+  <img src="https://cdn-icons-png.flaticon.com/512/2991/2991133.png" alt="Workshop Notes logo">
   <h1>Workshop Notes 2025</h1>
   <p>Jot down upcoming workshops worth attending ✏</p>
 </header>
@@ -222,18 +215,12 @@
   const dateFilter = document.getElementById('dateFilter');
 
   function createPencilSVG() {
-    // Return an SVG element (string) for the pencil — inline so it always renders
     return `
       <svg class="pencil" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <!-- eraser -->
         <rect x="40" y="2" width="13" height="10" rx="2" class="eraser"/>
-        <!-- metal band -->
         <rect x="38.2" y="12" width="16" height="4" rx="1" class="metal"/>
-        <!-- wooden body -->
         <path d="M7 46 L39 14 L54 29 L22 61 z" class="body"/>
-        <!-- sharpened tip (wood) -->
         <path d="M54 29 L58 33 L50 41 z" fill="#e6c89a" stroke="#caa567" stroke-width="0.4"/>
-        <!-- lead -->
         <path d="M58 33 L61 36 L53 44 L50 41 z" class="lead"/>
       </svg>
     `;
@@ -242,7 +229,7 @@
   function displayEvents(list) {
     container.innerHTML = '';
     if (list.length === 0) {
-      container.innerHTML = <p style="grid-column:1/-1;text-align:center;color:#777;">No workshops found.</p>;
+      container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#777;">No workshops found.</p>';
       return;
     }
 
@@ -257,8 +244,6 @@
         ${createPencilSVG()}
 
         <h3>${escapeHtml(e.title)}</h3>
-        <p><strong>Date:</strong> ${new Date(e.date).toDateString()}</p>
-        <p><strong>Place:</strong> ${escapeHtml(e.place)}</p>
         <p><strong>Mode:</strong> ${escapeHtml(e.mode)}</p>
       `;
       container.appendChild(card);
@@ -276,7 +261,6 @@
     displayEvents(filtered);
   }
 
-  // simple escape for injected text (titles/places)
   function escapeHtml(str){
     return String(str)
       .replace(/&/g,'&amp;')
@@ -289,7 +273,6 @@
   modeFilter.addEventListener('change', filterEvents);
   dateFilter.addEventListener('change', filterEvents);
 
-  // initial render
   displayEvents(events);
 </script>
 </body>

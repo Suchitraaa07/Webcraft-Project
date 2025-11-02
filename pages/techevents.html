@@ -19,14 +19,30 @@
     }
 
     body {
-      /* New, deeper tech gradient */
-      background: linear-gradient(135deg, #0a0c1e 0%, #000000 70%);
+      background-color: #0a0c1e;
       color: #eee;
       min-height: 100vh;
-      overflow-x: hidden; /* Prevents horizontal scroll from animations */
+      overflow-x: hidden;
+      
+      background-image: 
+        linear-gradient(135deg, #0a0c1e 0%, #000000 100%),
+        radial-gradient(at 20% 10%, rgba(159, 85, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(at 80% 90%, rgba(159, 85, 255, 0.2) 0%, transparent 60%);
+      
+      background-size: 100% 100%, 200% 200%, 150% 150%;
+      background-position: 0% 0%, 0% 0%, 0% 0%;
+      animation: moveNeural 15s ease-in-out infinite alternate;
     }
 
-    /* Page load-in animation */
+    @keyframes moveNeural {
+      from {
+        background-position: 0% 0%, 0% 0%, 0% 0%;
+      }
+      to {
+        background-position: 0% 0%, 100% 100%, 50% 50%;
+      }
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -37,14 +53,16 @@
       text-align: center;
       padding: 70px 20px 40px;
       animation: fadeIn 1s ease-out;
+      background-color: rgba(0,0,0,0.1);
+      backdrop-filter: blur(2px);
     }
 
     header h1 {
-      font-family: 'Roboto Mono', monospace; /* Tech font */
+      font-family: 'Roboto Mono', monospace;
       font-size: 3rem;
       font-weight: 700;
-      color: #9f55ff; /* New accent color (digital purple) */
-      text-shadow: 0 0 10px rgba(159, 85, 255, 0.7);
+      color: #9f55ff;
+      text-shadow: 0 0 15px rgba(159, 85, 255, 0.7);
     }
 
     header p {
@@ -54,9 +72,10 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     }
 
-    /* --- 3. FILTERS (Glassmorphism UI) --- */
+    /* --- 3. FILTERS --- */
     .filters {
       display: flex;
       justify-content: center;
@@ -64,8 +83,6 @@
       flex-wrap: wrap;
       margin: 30px auto;
       max-width: 800px;
-      
-      /* Frosted glass effect */
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -82,7 +99,8 @@
       border-radius: 8px;
       font-size: 1rem;
       transition: all 0.3s;
-      outline: none; /* Remove default outline */
+      outline: none;
+      cursor: pointer;
     }
 
     select:focus, input[type="date"]:focus,
@@ -91,7 +109,7 @@
       box-shadow: 0 0 10px rgba(159, 85, 255, 0.5);
     }
 
-    /* --- 4. EVENT CARDS (Glassmorphism UI) --- */
+    /* --- 4. EVENT CARDS --- */
     .events {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -100,52 +118,64 @@
     }
 
     .card {
-      /* Frosted glass card */
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-left: 4px solid #9f55ff; /* Accent border */
       border-radius: 12px;
-      padding: 25px;
+      padding: 0;
       transition: all 0.3s ease;
-      
-      /* Staggered load-in animation */
       opacity: 0;
       animation: fadeIn 0.8s ease-out forwards;
+      overflow: hidden;
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 0 25px rgba(159, 85, 255, 0.5);
       border-color: #9f55ff;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 2px solid #9f55ff;
+    }
+
+    .card-content {
+      padding: 20px 25px 25px 25px;
     }
 
     .card h3 {
       font-family: 'Roboto Mono', monospace;
-      color: #00c6ff; /* Secondary accent color (cyan) */
-      margin-bottom: 12px;
-      font-size: 1.25rem;
+      color: #00c6ff;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
     }
 
     .card p {
       color: #ccc;
       font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
     
     .card p strong {
-      color: #aaa; /* Make labels dimmer for contrast */
+      color: #adade6; 
       font-weight: 400;
+      margin-right: 5px;
     }
 
-    /* Used by JS to show no results */
     .no-results {
       grid-column: 1 / -1;
       text-align: center;
       color: #aaa;
       font-size: 1.1rem;
       padding: 40px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
     }
 
     /* --- 5. FOOTER --- */
@@ -156,6 +186,7 @@
       border-top: 1px solid #222;
       font-size: 0.9rem;
       margin-top: 40px;
+      background-color: rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -175,8 +206,7 @@
   <input type="date" id="dateFilter">
 </section>
 
-<section class="events" id="eventsContainer">
-  </section>
+<section class="events" id="eventsContainer"></section>
 
 <footer>
   © 2025 TechEvents. All rights reserved.
@@ -185,13 +215,55 @@
 <script>
 // --- 1. STATE (Our Data) ---
 const events = [
-  { title: "AI Innovators Summit", date: "2025-11-20", place: "Berlin, Germany", mode: "Offline" },
-  { title: "Future of Web Dev", date: "2025-12-05", place: "Online", mode: "Online" },
-  { title: "CyberSec Global", date: "2025-11-18", place: "Warsaw, Poland", mode: "Offline" },
-  { title: "CloudNext Meetup", date: "2025-12-10", place: "Online", mode: "Online" },
-  { title: "Data Science Expo", date: "2025-12-15", place: "Prague, Czech Republic", mode: "Offline" },
-  { title: "NoCode Future Conf", date: "2025-11-30", place: "Online", mode: "Online" },
-  { title: "Quantum Computing Today", date: "2025-11-20", place: "Online", mode: "Online" }
+  { 
+    title: "AI Innovators Summit", 
+    date: "2025-11-20", 
+    place: "On Campus", 
+    mode: "Offline",
+    image: "https://cdn.digitalisationworld.com/uploads/images/034fdfe8ec5989d87a2babe0fe21aa472c7472c73490c0f1.jpg"
+  },
+  { 
+    title: "Future of Web Dev", 
+    date: "2025-12-05", 
+    place: "Online", 
+    mode: "Online",
+    image: "https://deftsoft.com/wp-content/uploads/2024/11/Future-of-Web-Development-Trends-to-Watch-in-2025.png"
+  },
+  { 
+    title: "CyberSec Global", 
+    date: "2025-11-18", 
+    place: "On Campus", 
+    mode: "Offline",
+    image: "https://eu-images.contentstack.com/v3/assets/blt10e444bce2d36aa8/bltb24cbfe01a6b2b2c/65243937ac22385ec5c003ce/Global-Cybersecurity.jpg"
+  },
+  { 
+    title: "CloudNext Meetup", 
+    date: "2025-12-10", 
+    place: "Online", 
+    mode: "Online",
+    image: "https://images.ctfassets.net/dkgr2j75jrom/2ilcyPhsCvouCmoHRDMgPb/38206b2e8751bac7fa8dd32b20e67f73/blog-googlenext-4-2024.png"
+  },
+  { 
+    title: "Data Science Expo", 
+    date: "2025-12-15", 
+    place: "On Campus", 
+    mode: "Offline",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4qoydCWxsFRz69Knzr-NX8B3rCaQYyEMtxg&s"
+  },
+  { 
+    title: "NoCode Future Conf", 
+    date: "2025-11-30", 
+    place: "Online", 
+    mode: "Online",
+    image: "https://cdn.prod.website-files.com/652573f752f7acbb92e633e0/654133302f0f3c66e12116ba_61e7da538c9914b1c2095a6c_61b899f34fda36af1539025c_futur%2520no%2520code%2520.jpeg"
+  },
+  { 
+    title: "Quantum Computing Today", 
+    date: "2025-11-20", 
+    place: "Online", 
+    mode: "Online",
+    image: "https://hips.hearstapps.com/hmg-prod/images/illustration-of-a-working-quantum-computer-quantum-royalty-free-image-1761684490.pjpeg?crop=0.75xw:1xh;center,top&resize=1200:*"
+  }
 ];
 
 // --- 2. DOM ELEMENTS ---
@@ -200,13 +272,8 @@ const modeFilter = document.getElementById('modeFilter');
 const dateFilter = document.getElementById('dateFilter');
 
 // --- 3. FUNCTIONS ---
-
-/**
- * Renders the provided list of events into the DOM.
- * @param {Array} filteredEvents - The array of event objects to display.
- */
 function displayEvents(filteredEvents) {
-  container.innerHTML = ''; // Clear previous results
+  container.innerHTML = ''; 
 
   if (filteredEvents.length === 0) {
     container.innerHTML = `<p class="no-results">No events found matching your criteria.</p>`;
@@ -216,39 +283,34 @@ function displayEvents(filteredEvents) {
   filteredEvents.forEach((e, index) => {
     const card = document.createElement('div');
     card.className = 'card';
-    
-    // Stagger the animation delay for each card
     card.style.animationDelay = `${index * 0.1}s`;
     
     card.innerHTML = `
-      <h3>${e.title}</h3>
-      <p><strong>Date:</strong> ${new Date(e.date).toDateString()}</p>
-      <p><strong>Place:</strong> ${e.place}</p>
-      <p><strong>Mode:</strong> ${e.mode}</p>
+      <img src="${e.image}" alt="${e.title}" class="card-image">
+      <div class="card-content">
+        <h3>${e.title}</h3>
+        <p><strong>Date:</strong> ${new Date(e.date).toDateString()}</p>
+        <p><strong>Place:</strong> ${e.place}</p>
+        <p><strong>Mode:</strong> ${e.mode}</p>
+      </div>
     `;
     container.appendChild(card);
   });
 }
 
-/**
- * Checks the filters and updates the event list.
- */
 function filterEvents() {
   const mode = modeFilter.value;
   const date = dateFilter.value;
   let filtered = events;
 
-  // 1. Filter by Mode
   if (mode !== "all") {
     filtered = filtered.filter(e => e.mode === mode);
   }
 
-  // 2. Filter by Date
   if (date) {
     filtered = filtered.filter(e => e.date === date);
   }
 
-  // 3. Re-display the filtered events
   displayEvents(filtered);
 }
 
@@ -256,9 +318,7 @@ function filterEvents() {
 modeFilter.addEventListener('change', filterEvents);
 dateFilter.addEventListener('change', filterEvents);
 
-// Initial Load: Display all events when the page loads
 displayEvents(events);
-
 </script>
 
 </body>
