@@ -1,167 +1,71 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registration-form");
+  const successModal = document.getElementById("success-modal");
+  const closeModalBtn = document.getElementById("close-modal-btn");
 
-  // --- 1. Load Navbar ---
-  fetch("navbar.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("navbar-placeholder").innerHTML = data;
-    });
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
 
-  // --- 2. Load Footer ---
-  fetch("footer.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("footer-placeholder").innerHTML = data;
-    });
+  const nameError = document.getElementById("name-error");
+  const emailError = document.getElementById("email-error");
+  const phoneError = document.getElementById("phone-error");
 
-  // --- 3. Scroll-Reveal Animation for 'About' Section ---
-  const aboutSection = document.getElementById("about-section");
-  if (aboutSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          aboutSection.classList.add("is-visible");
-          observer.unobserve(aboutSection);
-        }
-      });
-    }, { threshold: 0.1 });
-    observer.observe(aboutSection);
-  }
+  // Show modal function
+  const showModal = () => {
+    successModal.style.display = "flex";
+    successModal.classList.add("animate-fadeIn");
+  };
 
-  // --- 4. Schedule Tab Logic (MOVED FROM schedule.js) ---
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const tabContents = document.querySelectorAll(".tab-content");
-  
-  if (tabButtons.length > 0) { // Check if tabs exist on this page
-    tabButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        tabButtons.forEach(btn => btn.classList.remove("active"));
-        tabContents.forEach(content => content.classList.remove("active"));
-        
-        button.classList.add("active");
-        const day = button.dataset.day;
-        document.getElementById(day).classList.add("active");
-      });
-    });
-  }
+  // Hide modal function
+  const hideModal = () => {
+    successModal.classList.remove("animate-fadeIn");
+    successModal.classList.add("animate-fadeOut");
+    setTimeout(() => {
+      successModal.style.display = "none";
+      successModal.classList.remove("animate-fadeOut");
+    }, 400);
+  };
 
-    // --- 1. SCHEDULE TAB LOGIC (DUPLICATE SAFE) ---
-    // Already present above, so not repeated.
+  // Form submission handler
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-    // --- 2. FORM VALIDATION & POP-UP LOGIC ---
+    let valid = true;
 
-      const successModal = document.getElementById("success-modal");
-      const closeModalBtn = document.getElementById("close-modal-btn");
+    // Reset errors
+    nameError.textContent = "";
+    emailError.textContent = "";
+    phoneError.textContent = "";
 
-      // Input fields
-      const nameInput = document.getElementById("name");
-      const emailInput = document.getElementById("email");
-      const phoneInput = document.getElementById("phone");
-
-      // Error message fields
-      const nameError = document.getElementById("name-error");
-      const emailError = document.getElementById("email-error");
-      const phoneError = document.getElementById("phone-error");
-
-      // --- 2. FORM VALIDATION & POP-UP LOGIC ---
-      if (form) {
-        form.addEventListener("submit", function(event) {
-          event.preventDefault(); 
-          // Start by assuming the form is valid
-          let isValid = true; 
-          // Reset errors
-          nameError.textContent = "";
-          emailError.textContent = "";
-          phoneError.textContent = "";
-          // Validate Name
-          if (nameInput.value.trim() === "") {
-            nameError.textContent = "Full Name is required.";
-            isValid = false;
-          }
-          // Validate Email
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(emailInput.value)) {
-            emailError.textContent = "Please enter a valid email address.";
-            isValid = false;
-          }
-          // Validate Phone
-          const phoneRegex = /^\d{10}$/;
-          if (!phoneRegex.test(phoneInput.value)) {
-            phoneError.textContent = "Please enter a valid 10-digit phone number.";
-            isValid = false;
-          }
-          // --- This is the final check ---
-          // Only show the pop-up if 'isValid' is still true
-          if (isValid && successModal) {
-            successModal.style.display = "flex";
-          }
-        });
-      }
-
-    // --- 3. MODAL CLOSE LOGIC ---
-    if (closeModalBtn && successModal) {
-      closeModalBtn.addEventListener("click", function() {
-        successModal.style.display = "none";
-      });
+    // Validation
+    if (nameInput.value.trim() === "") {
+      nameError.textContent = "Please enter your name.";
+      valid = false;
     }
 
-  // --- 5. Form Validation Logic (MOVED FROM contact.js) ---
-  const form = document.getElementById("registration-form");
-  if (form) { // Check if form exists on this page
-    const formWrapper = document.getElementById("form-wrapper");
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
-    
-    const nameError = document.getElementById("name-error");
-    const emailError = document.getElementById("email-error");
-    const phoneError = document.getElementById("phone-error");
+    if (emailInput.value.trim() === "" || !emailInput.value.includes("@")) {
+      emailError.textContent = "Please enter a valid email.";
+      valid = false;
+    }
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault(); 
-      let isValid = true;
-      
-      // Reset errors
-      nameError.textContent = "";
-      emailError.textContent = "";
-      phoneError.textContent = "";
-      nameInput.classList.remove("border-red-500");
-      emailInput.classList.remove("border-red-500");
-      phoneInput.classList.remove("border-red-500");
+    if (!/^[0-9]{10}$/.test(phoneInput.value.trim())) {
+      phoneError.textContent = "Please enter a valid 10-digit phone number.";
+      valid = false;
+    }
 
-      // Name Validation
-      if (nameInput.value.trim() === "") {
-        nameError.textContent = "Full Name is required.";
-        nameInput.classList.add("border-red-500");
-        isValid = false;
-      }
-      
-      // Email Validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-      if (!emailRegex.test(emailInput.value)) {
-        emailError.textContent = "Please enter a valid email address.";
-        emailInput.classList.add("border-red-500");
-        isValid = false;
-      }
-      
-      // Phone Validation
-      const phoneRegex = /^\d{10}$/;
-      if (!phoneRegex.test(phoneInput.value)) {
-        phoneError.textContent = "Please enter a valid 10-digit phone number.";
-        phoneInput.classList.add("border-red-500");
-        isValid = false;
-      }
-
-      // Show Success
-      if (isValid) {
-        formWrapper.innerHTML = `
-          <div class="text-center p-10 bg-gray-900 rounded-lg shadow-xl">
-            <h2 class="text-3xl font-bold text-white mb-4">Registration Successful!</h2>
-            <p class="text-gray-300 text-lg">Thank you, ${nameInput.value}. We've received your registration.</p>
-            <p class="text-gray-400 mt-2">A confirmation email will be sent to ${emailInput.value}.</p>
-          </div>
-        `;
-      }
-    });
-  }
+    // Show modal if valid
+    if (valid) {
+      showModal();
+      form.reset();
+    }
   });
+
+  // Close modal on button click
+  closeModalBtn.addEventListener("click", hideModal);
+
+  // Close modal if background is clicked
+  successModal.addEventListener("click", (e) => {
+    if (e.target === successModal) hideModal();
+  });
+});
