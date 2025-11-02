@@ -80,3 +80,72 @@ body.theme-gaming .event-card-title {
 body.theme-all {
   /* Add equivalent utility classes directly in HTML */
 }
+/* 1. Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+  /* Add padding to the top to account for the fixed navbar */
+  scroll-padding-top: 80px; /* Adjust this value to match your navbar's height */
+}
+
+/* 2. Schedule Tab Styles (from your HTML) */
+.tab-btn {
+  @apply px-6 py-3 font-semibold text-lg text-gray-600 dark:text-gray-400 border-b-2 border-transparent hover:text-purple-600 dark:hover:text-purple-400;
+}
+.tab-btn.active {
+  @apply text-purple-600 dark:text-purple-400 border-purple-600 dark:border-purple-400;
+}
+
+/* 3. Hide inactive tab content */
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+/* --- 1. ANIMATED HERO BACKGROUND --- */
+.hero-background {
+  /* Set a base dark color in case the gradient doesn't load */
+  background-color: #0a0c1e;
+  color: #eee; /* Ensures text on top is light */
+  
+  /* Make it fill the screen (or the height you want) */
+  min-height: 100vh; 
+  overflow: hidden; /* Prevents any weird scrollbars */
+
+  /* We layer 3 backgrounds on top of each other:
+     1. The base dark linear gradient.
+     2. A large, soft purple gradient (our first "node").
+     3. A second, smaller purple gradient (our second "node").
+  */
+  background-image: 
+    linear-gradient(135deg, #0a0c1e 0%, #000000 100%),
+    radial-gradient(at 20% 10%, rgba(159, 85, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(at 80% 90%, rgba(159, 85, 255, 0.2) 0%, transparent 60%);
+  
+  /* We set different sizes and positions for the 3 gradients.
+    This makes the purple "nodes" large and spread out.
+  */
+  background-size: 100% 100%, 200% 200%, 150% 150%;
+  background-position: 0% 0%, 0% 0%, 0% 0%;
+  
+  /* Finally, we apply our animation.
+    It will run for 15 seconds, 'ease-in-out' for smooth speed,
+    'infinite' to loop forever, and 'alternate' to go back and forth.
+  */
+  animation: moveNeural 15s ease-in-out infinite alternate;
+}
+
+/* --- 2. THE ANIMATION KEYFRAMES --- */
+/* This rule defines the "moveNeural" animation */
+@keyframes moveNeural {
+  /* The "start" position of the animation */
+  from {
+    /* The 3 background-positions match the 'body' tag */
+    background-position: 0% 0%, 0% 0%, 0% 0%;
+  }
+  /* The "end" position of the animation */
+  to {
+    /* We only move the two purple gradients (backgrounds 2 and 3) */
+    background-position: 0% 0%, 100% 100%, 50% 50%;
+  }
+}

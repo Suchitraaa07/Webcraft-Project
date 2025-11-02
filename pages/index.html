@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EventVerse 2025</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="../css/style.css"> 
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
@@ -22,15 +22,16 @@
     </div>
   </nav>
 
-  <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative" 
+  <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative"
     style="background-image: url('https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1500&q=80');">
     <div class="absolute inset-0 bg-black opacity-70"></div>
+
     <div class="relative text-center text-white px-6">
       <h1 class="text-5xl md:text-7xl font-bold mb-4">EVENTVERSE 2025</h1>
       <p class="text-xl mb-8">Where Innovation Meets Celebration</p>
       <div class="space-x-4">
         <a href="#schedule" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold transition">View Schedule</a>
-        <a href="#register" class="border-2 border-yellow-400 hover:bg-yellow-400 hover:text-black px-6 py-3 rounded-lg text-lg font-semibold transition">Contact</a>
+        <a href="#register" class="border-2 border-yellow-400 hover:bg-yellow-400 hover:text-black px-6 py-3 rounded-lg text-lg font-semibold transition">Register Now</a>
       </div>
     </div>
   </section>
@@ -91,8 +92,8 @@
           <p><strong>Phone:</strong> +91 987 654 3210</p>
         </div>
         <div class="mt-8 rounded-lg overflow-hidden">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.43202685838!2d79.053186315332!3d21.13524839077977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0e53a610449%3A0x9597cfa631cc710e!2sGovernment%20College%20of%20Engineering%2C%20Nagpur!5e0!3m2!1sen!2sin!4f1716383636731!5m2!1sen!2sin" 
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.43202685838!2d79.053186315332!3d21.13524839077977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0e53a610449%3A0x9597cfa631cc710e!2sGovernment%20College%20of%20Engineering%2C%20Nagpur!5e0!3m2!1sen!2sin!4f1716383636731!5m2!1sen!2sin"
             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
           </iframe>
         </div>
@@ -106,16 +107,19 @@
             <input type="text" id="name" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
             <p id="name-error" class="text-red-500 text-sm mt-1 h-4"></p>
           </div>
+
           <div>
             <label for="email" class="block font-medium mb-1">Email Address *</label>
             <input type="email" id="email" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
             <p id="email-error" class="text-red-500 text-sm mt-1 h-4"></p>
           </div>
+
           <div>
             <label for="phone" class="block font-medium mb-1">Phone Number *</label>
             <input type="tel" id="phone" class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-2 focus:border-purple-500 focus:outline-none" required>
             <p id="phone-error" class="text-red-500 text-sm mt-1 h-4"></p>
           </div>
+
           <button type="submit" class="w-full bg-purple-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 transition">
             Submit Registration
           </button>
@@ -123,7 +127,7 @@
       </div>
     </div>
   </section>
-
+  
   <footer class="bg-gray-900 text-gray-400 py-8 text-center">
     <p>© 2025 EventVerse. All rights reserved.</p>
   </footer>
