@@ -1,0 +1,82 @@
+/* Import Tailwind's base styles, components, and utilities */
+/* Tailwind directives removed for plain CSS compatibility */
+
+/* --- Base styles for filter buttons and tabs --- */
+.filter-btn {
+  /* Add equivalent utility classes directly in HTML */
+}
+.filter-btn.active {
+  /* Add equivalent utility classes directly in HTML */
+}
+
+.tab-btn {
+  /* Add equivalent utility classes directly in HTML */
+}
+.tab-btn.active {
+  /* Add equivalent utility classes directly in HTML */
+}
+
+/* Hide inactive tab content */
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* --- Base Event Card Style --- */
+.event-card {
+  /* Add equivalent utility classes directly in HTML */
+}
+.event-card-title {
+  /* Add equivalent utility classes directly in HTML */
+}
+
+/* --- THEME 1: Tech (Cyberpunk) --- */
+body.theme-tech {
+  /* Add equivalent utility classes directly in HTML */
+}
+body.theme-tech .event-card {
+  /* Add equivalent utility classes directly in HTML */
+}
+body.theme-tech .event-card-title {
+  /* Add equivalent utility classes directly in HTML */
+}
+
+/* --- THEME 2: Cultural (Vibrant) --- */
+body.theme-cultural {
+  /* Add equivalent utility classes directly in HTML */
+}
+body.theme-cultural .event-card {
+  /* Add equivalent utility classes directly in HTML */
+}
+body.theme-cultural .event-card-title {
+  /* Add equivalent utility classes directly in HTML */
+}
+
+/* --- THEME 3: Workshop (Formal/Nerdy) --- */
+body.theme-workshop {
+  /* Add equivalent utility classes directly in HTML */
+}
+body.theme-workshop .event-card {
+  /* Add equivalent utility classes directly in HTML */
+}
+body.theme-workshop .event-card-title {
+  /* Add equivalent utility classes directly in HTML */
+}
+
+/* --- THEME 4: Gaming (Gamified) --- */
+body.theme-gaming {
+  /* Add equivalent utility classes directly in HTML */
+}
+body.theme-gaming .event-card {
+  /* Add equivalent utility classes directly in HTML */
+}
+body.theme-gaming .event-card-title {
+  /* Add equivalent utility classes directly in HTML */
+}
+
+/* --- THEME 5: All (Default) --- */
+body.theme-all {
+  /* Add equivalent utility classes directly in HTML */
+}
