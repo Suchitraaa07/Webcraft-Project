@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Workshop Notes | 2025 — Pencil Fix</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Architects+Daughter&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: repeating-linear-gradient(
+      #fdfbf7 0px,
+      #fdfbf7 23px,
+      #f5eede 24px
+    );
+    font-family: 'Patrick Hand', cursive;
+    color: #333;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    padding: 50px 20px 20px;
+    border-bottom: 2px dashed #999;
+    background-color: #fffaf0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  header h1 {
+    font-size: 2.8rem;
+    color: #444;
+    text-shadow: 2px 2px 0 #f0dba7;
+  }
+
+  header p { font-size: 1.1rem; color: #555; margin-top: 8px; }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 30px auto;
+  }
+
+  select, input[type="date"] {
+    background: #fffaf0;
+    border: 2px dashed #888;
+    color: #333;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Architects Daughter', cursive;
+    transition: 0.25s;
+  }
+
+  select:hover, input[type="date"]:hover {
+    border-color: #f5b041;
+    background: #fff5e0;
+  }
+
+  .events {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 40px 10%;
+  }
+
+  .card {
+    background: #fffdf5;
+    border: 2px dashed #bbb;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 4px 4px 0 #e6c87f;
+    position: relative;
+    overflow: visible; /* allow pencil to overflow */
+    transition: transform 0.18s;
+  }
+
+  .card:hover { transform: rotate(-1deg); }
+
+  .card .imgwrap {
+    width: 100%;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg,#efe7d1,#fff); /* fallback */
+  }
+
+  .card img.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Inline SVG pencil wrapper */
+  .pencil {
+    position: absolute;
+    top: -18px;
+    right: -16px;
+    width: 54px;
+    height: 54px;
+    transform: rotate(20deg);
+    z-index: 5;
+    pointer-events: none; /* so clicks go through */
+    filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.15));
+  }
+
+  /* give the pencil a subtle paper-pin look */
+  .pencil .eraser {
+    fill: #f3a57a;
+    stroke: #b86b3e;
+    stroke-width: 0.5;
+  }
+  .pencil .metal {
+    fill: #c7c7c7;
+    stroke: #8f8f8f;
+    stroke-width: 0.35;
+  }
+  .pencil .body {
+    fill: #f6e27c;
+    stroke: #cbbf3b;
+    stroke-width: 0.45;
+  }
+  .pencil .lead {
+    fill: #3a3a3a;
+  }
+
+  .card h3 { font-size: 1.35rem; color: #444; margin-bottom: 6px; }
+  .card p { color: #555; line-height: 1.5; font-size: 1rem; margin: 4px 0; }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: #555;
+    font-size: 1rem;
+    border-top: 2px dashed #bbb;
+    background-color: #fffaf0;
+    margin-top: 40px;
+  }
+
+  @media (max-width:600px){
+    header h1 { font-size: 2.2rem; }
+    .pencil { width: 44px; height: 44px; top: -14px; right: -12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Workshop Notes 2025</h1>
+  <p>Jot down upcoming workshops worth attending ✏️</p>
+</header>
+
+<section class="filters">
+  <select id="modeFilter">
+    <option value="all">All Modes</option>
+    <option value="Online">Online</option>
+    <option value="Offline">Offline</option>
+  </select>
+
+  <input type="date" id="dateFilter">
+</section>
+
+<section class="events" id="eventsContainer"></section>
+
+<footer>© 2025 StudyHub Workshops — Keep Learning, Keep Sketching!</footer>
+
+<script>
+  const events = [
+    {
+      title: "Creative Writing Workshop",
+      date: "2025-11-18",
+      place: "Online",
+      mode: "Online",
+      img: "https://images.unsplash.com/photo-1589987607627-616b2d25d2a3?auto=format&fit=crop&w=900&q=60"
+    },
+    {
+      title: "Arduino Robotics Bootcamp",
+      date: "2025-11-25",
+      place: "Delhi, India",
+      mode: "Offline",
+      img: "https://images.unsplash.com/photo-1555617981-1a39d3a7a6e5?auto=format&fit=crop&w=900&q=60"
+    },
+    {
+      title: "Photography Basics",
+      date: "2025-11-30",
+      place: "Online",
+      mode: "Online",
+      img: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=900&q=60"
+    },
+    {
+      title: "3D Printing Hands-On",
+      date: "2025-12-05",
+      place: "Pune, India",
+      mode: "Offline",
+      img: "https://images.unsplash.com/photo-1529101091764-c3526daf38fe?auto=format&fit=crop&w=900&q=60"
+    },
+    {
+      title: "Sketching for Beginners",
+      date: "2025-12-12",
+      place: "Mumbai, India",
+      mode: "Offline",
+      img: "https://images.unsplash.com/photo-1578301978693-85a76648d76d?auto=format&fit=crop&w=900&q=60"
+    },
+    {
+      title: "Excel Productivity Workshop",
+      date: "2025-12-20",
+      place: "Online",
+      mode: "Online",
+      img: "https://images.unsplash.com/photo-1627398242454-45a1465c2476?auto=format&fit=crop&w=900&q=60"
+    }
+  ];
+
+  const container = document.getElementById('eventsContainer');
+  const modeFilter = document.getElementById('modeFilter');
+  const dateFilter = document.getElementById('dateFilter');
+
+  function createPencilSVG() {
+    // Return an SVG element (string) for the pencil — inline so it always renders
+    return `
+      <svg class="pencil" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <!-- eraser -->
+        <rect x="40" y="2" width="13" height="10" rx="2" class="eraser"/>
+        <!-- metal band -->
+        <rect x="38.2" y="12" width="16" height="4" rx="1" class="metal"/>
+        <!-- wooden body -->
+        <path d="M7 46 L39 14 L54 29 L22 61 z" class="body"/>
+        <!-- sharpened tip (wood) -->
+        <path d="M54 29 L58 33 L50 41 z" fill="#e6c89a" stroke="#caa567" stroke-width="0.4"/>
+        <!-- lead -->
+        <path d="M58 33 L61 36 L53 44 L50 41 z" class="lead"/>
+      </svg>
+    `;
+  }
+
+  function displayEvents(list) {
+    container.innerHTML = '';
+    if (list.length === 0) {
+      container.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:#777;">No workshops found.</p>`;
+      return;
+    }
+
+    list.forEach(e => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="imgwrap">
+          <img class="photo" src="${e.img}" alt="${escapeHtml(e.title)}">
+        </div>
+
+        ${createPencilSVG()}
+
+        <h3>${escapeHtml(e.title)}</h3>
+        <p><strong>Date:</strong> ${new Date(e.date).toDateString()}</p>
+        <p><strong>Place:</strong> ${escapeHtml(e.place)}</p>
+        <p><strong>Mode:</strong> ${escapeHtml(e.mode)}</p>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function filterEvents() {
+    const mode = modeFilter.value;
+    const date = dateFilter.value;
+    let filtered = events.slice();
+
+    if (mode !== 'all') filtered = filtered.filter(ev => ev.mode === mode);
+    if (date) filtered = filtered.filter(ev => ev.date === date);
+
+    displayEvents(filtered);
+  }
+
+  // simple escape for injected text (titles/places)
+  function escapeHtml(str){
+    return String(str)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+
+  modeFilter.addEventListener('change', filterEvents);
+  dateFilter.addEventListener('change', filterEvents);
+
+  // initial render
+  displayEvents(events);
+</script>
+</body>
+</html>
