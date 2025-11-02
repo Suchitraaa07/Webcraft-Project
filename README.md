@@ -10,3 +10,5 @@
 # Workshops – Hands-on learning sessions on trending technologies.
 
 # Registration form with pop-up success modal.
+
+# Dynamic gaming web page
